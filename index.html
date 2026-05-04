@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Chore Tracker</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Chores">
+  <meta name="theme-color" content="#1D9E75">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="install-banner hidden" id="installBanner">
+    <span>📲 <strong>Add to Home Screen:</strong> tap Share → "Add to Home Screen"</span>
+    <button class="install-banner-close" onclick="dismissBanner()">✕</button>
+  </div>
+
+  <header class="page-header">
+    <h1>⭐ Chore Tracker</h1>
+    <p>Tap a chore to log it — allowance at 10!</p>
+  </header>
+
+  <main class="main">
+    <div class="children-grid" id="grid"></div>
+  </main>
+
+  <!-- Avatar picker modal -->
+  <div class="modal-overlay hidden" id="avatarModal">
+    <div class="modal">
+      <div class="modal-title">Choose an avatar</div>
+      <div class="emoji-grid" id="emojiGrid"></div>
+      <button class="modal-cancel" onclick="closeAvatarModal()">Cancel</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
