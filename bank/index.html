@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kids Bank</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Bank">
+  <meta name="theme-color" content="#1a3a5c">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="bank-icon-180.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="bank-logo">
+        <span class="bank-logo-icon">🐷</span>
+        <div>
+          <div class="bank-name">KIDS BANK</div>
+          <div class="bank-tagline" id="rateLabel">Loading rate…</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="next-interest-badge" id="nextBadge"></div>
+      </div>
+    </div>
+    <!-- Account tabs -->
+    <div class="account-tabs" id="accountTabs"></div>
+  </header>
+
+  <!-- Main account view -->
+  <main class="main" id="mainContent"></main>
+
+  <!-- Transaction modal -->
+  <div class="modal-overlay hidden" id="txModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title" id="txModalTitle">New Transaction</div>
+        <button class="modal-close" onclick="closeTxModal()">✕</button>
+      </div>
+      <div class="tx-type-row" id="txTypeRow">
+        <button class="tx-type-btn active" data-type="deposit">⬆️<br>Deposit</button>
+        <button class="tx-type-btn" data-type="spend">🛍<br>Spend</button>
+        <button class="tx-type-btn" data-type="donate">💝<br>Donate</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Amount</label>
+        <div class="amount-input-wrap">
+          <span class="amount-currency">€</span>
+          <input class="amount-input" id="txAmount" type="number" min="0.01" step="0.01" placeholder="0.00" inputmode="decimal">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description <span class="optional">(optional)</span></label>
+        <input class="form-input" id="txNote" type="text" maxlength="40" placeholder="e.g. Birthday money">
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeTxModal()">Cancel</button>
+        <button class="btn-primary" onclick="confirmTx()">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Opening balance modal -->
+  <div class="modal-overlay hidden" id="openingModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Opening Balance</div>
+        <button class="modal-close" onclick="closeOpeningModal()">✕</button>
+      </div>
+      <p class="modal-desc">Set the starting balance for this account.</p>
+      <div class="form-group">
+        <label class="form-label">Balance</label>
+        <div class="amount-input-wrap">
+          <span class="amount-currency">€</span>
+          <input class="amount-input" id="openingAmount" type="number" min="0" step="0.01" placeholder="0.00" inputmode="decimal">
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeOpeningModal()">Cancel</button>
+        <button class="btn-primary" onclick="confirmOpening()">Set Balance</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Allowance approval modal -->
+  <div class="modal-overlay hidden" id="allowanceModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Allowance Ready 🎉</div>
+        <button class="modal-close" onclick="closeAllowanceModal()">✕</button>
+      </div>
+      <p class="modal-desc" id="allowanceText"></p>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeAllowanceModal()">Not yet</button>
+        <button class="btn-primary" onclick="confirmAllowance()">Pay €5.00</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
